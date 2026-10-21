@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Buggy Aventura Tayrona · Tour en buggy del monte al mar · Santa Marta</title>
+<meta name="description" content="Maneja tu propio buggy por caminos destapados, sube al mirador del Rodadero, carétea en una piscina natural y cierra con arepa de huevo. 2 horas, $150.000 por persona.">
+<meta name="theme-color" content="#231A12">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Buggy Aventura Tayrona · Del monte al mar">
+<meta property="og:description" content="Tour en buggy de 2 horas en El Rodadero, Santa Marta: mirador, careteo en piscina natural y arepa de huevo. $150.000 por persona.">
+<meta property="og:image" content="https://camiotalora.github.io/buggy-aventura-tayrona/img/og.jpg">
+<meta property="og:locale" content="es_CO">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700;800&display=swap">
+<style>
+:root{
+  --noche:#231A12; --crema:#F6EEDC; --sol:#F5B21B; --caribe:#12A3B5; --caribe-osc:#0E7F8D;
+  --monte:#2F5D3A; --tierra:#A85F26; --texto2:#4A3B2D; --suave:#D9CDB4;
+  --display:'Anton',Impact,'Arial Narrow',sans-serif; --body:'Archivo',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--noche);color:var(--noche);font-family:var(--body);font-size:16px;line-height:1.45}
+img{max-width:100%;display:block}
+a{color:var(--caribe-osc)}
+button{font-family:inherit}
+.app{max-width:480px;margin:0 auto;background:var(--crema);overflow:hidden;min-height:100vh}
+.wrap{padding:0 16px}
+.eyebrow{font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--monte);margin:0}
+.h2{margin:4px 0 0;font-family:var(--display);font-weight:400;font-size:40px;line-height:1;text-transform:uppercase}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 18px;border-radius:14px;font-weight:800;font-size:17px;text-decoration:none;border:0;cursor:pointer}
+.btn svg{flex:0 0 auto}
+.btn-sol{background:var(--sol);color:var(--noche)}
+.btn-monte{background:var(--monte);color:var(--crema)}
+.btn-line{border:2px solid currentColor;background:transparent}
+.btn:focus-visible,.chip:focus-visible,.copy:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--caribe);outline-offset:2px}
+
+/* Barra */
+.topbar{position:sticky;top:0;z-index:20;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:var(--noche)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:44px;height:44px;border-radius:50%;box-shadow:0 0 0 2px var(--sol)}
+.brand b{display:block;font-size:13px;color:var(--crema);letter-spacing:.04em}
+.brand span{display:block;font-size:11px;color:var(--sol);font-weight:600}
+.topbar .btn{min-height:44px;font-size:14px;padding:0 16px;border-radius:999px}
+
+/* Portada */
+.hero{position:relative;min-height:620px;background:url(img/polvo.jpg) 30% 50%/cover;display:flex;flex-direction:column;justify-content:flex-end;padding:20px 16px 28px;color:var(--crema)}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,26,18,.35) 0%,rgba(35,26,18,0) 30%,rgba(35,26,18,.15) 55%,rgba(35,26,18,.92) 100%)}
+.hero>*{position:relative}
+.tag{position:absolute;left:16px;top:20px;background:var(--sol);color:var(--noche);font-weight:800;font-size:12px;letter-spacing:.14em;padding:7px 12px;border-radius:6px;transform:rotate(-3deg)}
+.speed{position:absolute;right:-20px;top:70px;transform:rotate(-8deg)}
+.speed i{display:block;height:6px;background:var(--sol);border-radius:4px;margin-bottom:8px}
+.speed i:nth-child(1){width:150px}.speed i:nth-child(2){width:100px;margin-left:50px;opacity:.7}
+.title{transform:rotate(-5deg);transform-origin:left center;margin:0 0 18px}
+.title span{display:block;font-family:var(--display);font-weight:400;font-size:76px;line-height:.92;text-transform:uppercase}
+.title .al{display:inline-block;background:var(--sol);color:var(--noche);padding:2px 14px 6px 12px}
+.hero p{margin:8px 0 18px;font-size:17px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.chips span{border:1.5px solid rgba(246,238,220,.7);border-radius:999px;padding:6px 12px;font-weight:600;font-size:13px}
+.hero-cta{display:flex;gap:10px}.hero-cta .btn{flex:1;min-height:52px;font-size:16px}
+.hero-cta .btn-line{color:var(--crema)}
+
+.ribbon{height:40px;background:var(--sol);display:flex;align-items:center;gap:14px;padding-left:16px;white-space:nowrap;overflow:hidden;font-weight:800;font-size:13px;letter-spacing:.1em}
+.ribbon i{opacity:.45;font-style:normal}
+
+/* Recorrido */
+.route{padding:44px 16px 36px}
+.steps{list-style:none;margin:24px 0 0;padding:0}
+.step{display:flex;gap:14px}
+.step .rail{display:flex;flex-direction:column;align-items:center;flex:0 0 auto}
+.num{width:44px;height:44px;border-radius:50%;background:var(--noche);color:var(--sol);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:20px}
+.num.mar{background:var(--caribe);color:var(--crema)}
+.line{flex:1;width:0;border-left:3px dashed var(--tierra);opacity:.5;margin-top:4px}
+.step .body{flex:1;min-width:0;padding-bottom:26px}
+.step h3{margin:8px 0 6px;font-size:20px;font-weight:800}
+.step p{margin:0;font-size:15px;color:var(--texto2)}
+.photo{position:relative;margin-top:14px}
+.photo::before{content:"";position:absolute;left:8px;top:8px;right:-6px;bottom:-6px;background:var(--sol);border-radius:16px}
+.photo img{position:relative;width:100%;height:220px;object-fit:cover;border-radius:16px}
+.sea{margin-top:14px;height:150px;border-radius:16px;background:url(img/mar.jpg) center/cover;display:flex;align-items:flex-end;padding:12px}
+.round{width:96px;height:96px;object-fit:cover;border-radius:50%;border:4px solid var(--crema)}
+.step-food{display:flex;gap:12px;align-items:center}
+.step-food .round{border-color:var(--sol);transform:rotate(5deg);flex:0 0 auto}
+
+/* Incluye */
+.incl{background:var(--noche);color:var(--crema);padding:40px 16px}
+.incl .eyebrow{color:var(--sol)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:20px}
+.card{background:rgba(246,238,220,.07);border:1px solid rgba(246,238,220,.16);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.card b{font-size:15px}.card span{font-size:13px;color:var(--suave)}
+
+/* Precio */
+.price{padding:40px 16px}
+.amount{display:flex;align-items:flex-end;gap:8px;margin-top:6px}
+.amount strong{font-family:var(--display);font-weight:400;font-size:68px;line-height:.95}
+.amount span{font-weight:800;font-size:16px;color:var(--tierra);padding-bottom:8px}
+.hours{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:10px 0 20px}
+.hours div{background:var(--noche);color:var(--crema);border-radius:10px;height:50px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:16px;line-height:1.05}
+.hours small{font-size:10px;font-weight:600;color:var(--suave)}
+.note{display:block;font-size:13px;color:#5A4A3A;text-align:center;margin-top:8px}
+
+/* Pago */
+.pay{position:relative;padding:56px 16px 40px;color:var(--crema)}
+.pay::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,90,104,.55) 0%,rgba(18,40,42,.9) 70%),url(img/mar.jpg) center/cover;clip-path:polygon(0 28px,100% 0,100% 100%,0 100%)}
+.pay>*{position:relative}
+.pay .eyebrow{color:var(--sol)}
+.pay .lead{margin:8px 0 18px;font-size:15px;color:#E7F4F4}
+.paycard{background:var(--crema);color:var(--noche);border-radius:20px;padding:20px;box-shadow:0 14px 34px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:14px}
+.key label{display:block;font-weight:800;font-size:12px;letter-spacing:.14em;color:var(--monte);margin-bottom:6px}
+.keyrow{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--noche);border-radius:14px;padding:6px 6px 6px 14px}
+.keyrow output{flex:1;min-width:0;font-weight:800;font-size:18px;line-height:1.15;white-space:nowrap;overflow:hidden}
+.copy{flex:0 0 auto;min-height:46px;padding:0 16px;border:0;border-radius:10px;background:var(--sol);color:var(--noche);font-weight:800;font-size:15px;cursor:pointer}
+.copy.ok{background:var(--monte);color:var(--crema)}
+.owner{font-size:13px;color:var(--texto2);margin-top:-4px}
+.howto{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.howto li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.howto li::before{counter-increment:paso;content:counter(paso);flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--caribe-osc);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+.howto{counter-reset:paso}
+.total{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(35,26,18,.15);padding-top:12px;font-size:14px;color:var(--texto2)}
+.total b{font-size:18px;color:var(--noche)}
+details.qr summary{list-style:none;cursor:pointer;min-height:44px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--caribe-osc);text-decoration:underline}
+details.qr summary::-webkit-details-marker{display:none}
+details.qr[open] .show{display:none}details.qr:not([open]) .hide{display:none}
+details.qr img{width:240px;height:240px;margin:8px auto 6px;border-radius:12px;background:#fff}
+details.qr p{margin:0;text-align:center;font-size:13px;color:var(--texto2)}
+.pay .btn{margin-top:18px}
+.pay .note{color:#E7F4F4}
+
+/* Encuentro */
+.meet{padding:36px 16px;display:flex;flex-direction:column;gap:14px}
+.addr{display:flex;gap:12px;align-items:flex-start}
+.addr .ico{flex:0 0 auto;width:44px;height:44px;border-radius:12px;background:var(--noche);display:flex;align-items:center;justify-content:center}
+.addr b{display:block;font-size:17px}.addr span{font-size:14px;color:var(--texto2)}
+.meet .btn{min-height:48px;font-size:15px;color:var(--noche)}
+
+/* Pie */
+.foot{position:relative;padding:44px 16px calc(28px + env(safe-area-inset-bottom));text-align:center;color:var(--crema);background:linear-gradient(180deg,rgba(35,26,18,.25) 0%,rgba(35,26,18,.9) 75%),url(img/atardecer.jpg) 30% center/cover;display:flex;flex-direction:column;align-items:center;gap:14px}
+.foot .logo{width:120px;height:120px;border-radius:50%;box-shadow:0 0 0 4px var(--sol)}
+.foot .phones{font-weight:800;font-size:20px}
+.foot .phones a{color:var(--crema);text-decoration:none}
+.foot .eyebrow{color:var(--sol)}
+.social{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%}
+.social .btn{min-height:52px;font-size:15px;color:var(--crema);background:rgba(246,238,220,.12);border:2px solid rgba(246,238,220,.6)}
+.legal{font-size:12px;color:var(--suave)}
+
+/* Ventana de reserva */
+dialog{padding:0;border:0;width:100%;max-width:480px;max-height:92vh;height:auto;inset:auto 0 0 0;margin:0 auto;overflow-y:auto;border-radius:24px 24px 0 0;background:var(--crema);color:var(--noche)}
+dialog::backdrop{background:rgba(20,14,9,.72)}
+dialog[open]{animation:sube .25s ease-out}
+@keyframes sube{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.sheet{padding:10px 18px calc(22px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:16px}
+.handle{align-self:center;width:44px;height:5px;border-radius:3px;background:rgba(35,26,18,.25)}
+.sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.sheet-head h2{margin:2px 0 0;font-family:var(--display);font-weight:400;font-size:36px;line-height:1;text-transform:uppercase}
+.close{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:0;background:var(--noche);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.field label,.field legend{display:block;font-weight:800;font-size:14px;margin-bottom:6px;padding:0}
+.field input{width:100%;height:48px;border:2px solid var(--noche);border-radius:12px;padding:0 14px;font:inherit;font-size:16px;background:#fff;color:var(--noche)}
+fieldset.field{border:0;margin:0;padding:0;min-width:0}
+.slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.slot{height:54px;border-radius:10px;border:2px solid rgba(35,26,18,.25);background:#fff;color:var(--noche);font-weight:800;font-size:15px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;cursor:pointer;padding:0}
+.slot small{font-size:10px;font-weight:600;opacity:.75}
+.slot[aria-pressed="true"]{background:var(--sol);border-color:var(--noche)}
+.people{display:flex;align-items:center;justify-content:space-between}
+.people small{display:block;font-size:12px;color:#5A4A3A;font-weight:400}
+.stepper{display:flex;align-items:center;gap:6px}
+.stepper button{width:44px;height:44px;border-radius:12px;font-weight:800;font-size:22px;cursor:pointer}
+.stepper .menos{border:2px solid var(--noche);background:transparent;color:var(--noche)}
+.stepper .mas{border:0;background:var(--noche);color:var(--sol)}
+.stepper button:disabled{opacity:.35;cursor:not-allowed}
+.stepper output{min-width:44px;text-align:center;font-family:var(--display);font-size:30px}
+.sum{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(35,26,18,.15);padding-top:12px;font-size:14px;color:var(--texto2)}
+.sum strong{font-family:var(--display);font-weight:400;font-size:32px;line-height:1;color:var(--noche)}
+#enviar[aria-disabled="true"]{background:var(--suave);color:#6B5B49;pointer-events:none}
+.falta{text-align:center;font-size:13px;font-weight:700;color:var(--tierra);min-height:18px;margin-top:-8px}
+.sheet .note{margin-top:-6px}
+
+@media (min-width:481px){
+  body{padding:0}
+  dialog{inset:0;margin:auto;height:fit-content;border-radius:24px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}dialog[open]{animation:none}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Moto Viajeros · Buggy Aventura Tayrona, inicio">
+      <img src="img/logo.png" alt="" width="44" height="44">
+      <div><b>MOTO VIAJEROS</b><span>Buggy Aventura Tayrona</span></div>
+    </a>
+    <button class="btn btn-sol" type="button" data-reservar>Reservar</button>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" aria-labelledby="titulo">
+      <span class="tag">EL RODADERO · SANTA MARTA</span>
+      <div class="speed" aria-hidden="true"><i></i><i></i></div>
+      <h1 class="title" id="titulo"><span>Del monte</span><span class="al">al mar</span></h1>
+      <p>Maneja tu propio buggy por caminos destapados, sube al mirador, carétea en una piscina natural y cierra con arepa de huevo.</p>
+      <div class="chips"><span>2 h aprox.</span><span>Guía + seguro</span><span>Careteo incluido</span></div>
+      <div class="hero-cta">
+        <button class="btn btn-sol" type="button" data-reservar>
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-13.4 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12z"/></svg>
+          Reservar
+        </button>
+        <a class="btn btn-line" href="#pagar">Cómo pagar</a>
+      </div>
+    </section>
+
+    <div class="ribbon" aria-hidden="true">BUGGY <i>●</i> MIRADOR <i>●</i> CARETEO <i>●</i> AREPA DE HUEVO <i>●</i> BUGGY</div>
+
+    <section class="route" aria-labelledby="t-recorrido">
+      <p class="eyebrow">El recorrido</p>
+      <h2 class="h2" id="t-recorrido">4 paradas, 2 horas</h2>
+      <ol class="steps">
+        <li class="step">
+          <div class="rail"><span class="num">1</span><span class="line"></span></div>
+          <div class="body"><h3>Ruta en buggy</h3><p>Salimos del sector Las Coyeras en El Rodadero. Cada uno maneja su buggy por carretera destapada.</p></div>
+        </li>
+        <li class="step">
+          <div class="rail"><span class="num">2</span><span class="line"></span></div>
+          <div class="body"><h3>Mirador del Rodadero</h3><p>Subimos al mirador para las fotos con toda la bahía de fondo.</p>
+            <div class="photo"><img src="img/mirador.jpg" alt="Buggies en el mirador del Rodadero con la bahía al fondo" loading="lazy" width="306" height="335"></div>
+          </div>
+        </li>
+        <li class="step">
+          <div class="rail"><span class="num mar">3</span><span class="line" style="border-color:var(--caribe)"></span></div>
+          <div class="body"><h3>Careteo en piscina natural</h3><p>Bordeamos el mar hasta el sector Puerto Luz. Baño en aguas cristalinas con careta y esnórquel incluidos.</p>
+            <div class="sea"><img class="round" src="img/careteo.jpg" alt="Careteo en la piscina natural" loading="lazy" style="transform:rotate(-5deg)"></div>
+          </div>
+        </li>
+        <li class="step">
+          <div class="rail"><span class="num">4</span></div>
+          <div class="body step-food">
+            <div><h3>Arepa de huevo</h3><p>De regreso al Rodadero cerramos con arepa de huevo recién hecha y gaseosa.</p></div>
+            <img class="round" src="img/arepa.jpg" alt="Arepa de huevo recién preparada" loading="lazy">
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="incl" aria-labelledby="t-incluye">
+      <p class="eyebrow">Qué incluye</p>
+      <h2 class="h2" id="t-incluye">Solo trae ganas</h2>
+      <div class="grid2">
+        <div class="card"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5B21B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3.5"/><path d="M5 21v-1.5A5.5 5.5 0 0 1 10.5 14h3a5.5 5.5 0 0 1 5.5 5.5V21"/></svg><b>Guía experto</b><span>Te acompaña todo el recorrido</span></div>
+        <div class="card"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5B21B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15a8 8 0 0 1 16 0v2H4z"/><path d="M12 7v4"/><path d="M4 17h16"/></svg><b>Equipo de moto</b><span>Casco, gafas de motocross y guantes</span></div>
+        <div class="card"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#12A3B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9c0-1.7 1.3-3 3-3h7c1.7 0 3 1.3 3 3v1c0 2-1.6 3.5-3.5 3.5-1.2 0-1.9-.8-2.5-1.8-.6 1-1.3 1.8-2.5 1.8C5.6 13.5 4 12 4 10z"/><path d="M20 4v8c0 3-2 5-5 5h-1"/></svg><b>Careta full face</b><span>Con esnórquel incluido</span></div>
+        <div class="card"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5B21B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><b>Seguro de accidentes</b><span>Para que disfrutes tranquilo</span></div>
+        <div class="card"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5B21B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="15" rx="8" ry="5"/><path d="M9 3c-1 1.3 1 2.2 0 3.6"/><path d="M13 3c-1 1.3 1 2.2 0 3.6"/></svg><b>Merienda</b><span>Arepa de huevo y gaseosa</span></div>
+        <div class="card"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5B21B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><b>Ida y regreso</b><span>Volvemos al mismo punto de salida</span></div>
+      </div>
+    </section>
+
+    <section class="price" id="reservar" aria-labelledby="t-precio">
+      <p class="eyebrow" id="t-precio">Precio y horarios</p>
+      <div class="amount"><strong>$150.000</strong><span>COP / persona</span></div>
+      <p style="margin:18px 0 0;font-weight:700;font-size:15px">Salidas todos los días</p>
+      <div class="hours">
+        <div>8:00<small>AM</small></div><div>10:00<small>AM</small></div><div>12:00<small>M</small></div><div>2:00<small>PM</small></div><div>4:00<small>PM</small></div>
+      </div>
+      <button class="btn btn-monte" type="button" data-reservar style="width:100%">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-13.4 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12z"/></svg>
+        Reservar ahora
+      </button>
+      <span class="note">Elige fecha, hora y personas; te llega todo listo a WhatsApp</span>
+    </section>
+
+    <section class="pay" id="pagar" aria-labelledby="t-pagar">
+      <p class="eyebrow">Cómo pagar</p>
+      <h2 class="h2" id="t-pagar">Paga con llave Bre-B</h2>
+      <p class="lead">Primero confirmamos tu cupo por WhatsApp. Luego paga con la llave que prefieras; las dos reciben desde cualquier banco o billetera.</p>
+      <div class="paycard">
+        <div class="key">
+          <label for="k-bancolombia">Llave Bancolombia</label>
+          <div class="keyrow"><output id="k-bancolombia">@buggyaventuratay</output><button class="copy" type="button" data-copy="@buggyaventuratay" aria-label="Copiar llave Bancolombia">Copiar</button></div>
+        </div>
+        <div class="key">
+          <label for="k-nequi">Llave Nequi</label>
+          <div class="keyrow"><output id="k-nequi">350 482 9399</output><button class="copy" type="button" data-copy="3504829399" aria-label="Copiar llave Nequi">Copiar</button></div>
+        </div>
+        <div class="owner">A nombre de <b>Nelson Armando Otálora Cárdenas</b></div>
+        <ol class="howto">
+          <li>Copia una de las llaves.</li>
+          <li><span>En tu app de banco o billetera elige <b>Bre-B</b> o <b>transferir con llave</b> y pégala.</span></li>
+          <li><span>Toca <b>Enviar comprobante</b> y adjunta la captura del pago en WhatsApp.</span></li>
+        </ol>
+        <div class="total"><span>Total por persona</span><b>$150.000</b></div>
+        <details class="qr">
+          <summary><span class="show">¿Pagas desde otro celular o computador? Ver QR</span><span class="hide">Ocultar QR</span></summary>
+          <img src="img/qr-bancolombia.png" alt="Código QR Bre-B de Bancolombia para pagar a Buggy Aventura Tayrona" width="240" height="240" loading="lazy">
+          <p>QR Bre-B · sirve desde cualquier banco</p>
+        </details>
+      </div>
+      <a class="btn btn-sol" href="https://wa.me/573239301842?text=Hola%2C%20ya%20hice%20el%20pago%20del%20tour%20en%20buggy.%20Te%20adjunto%20el%20comprobante.%0ANombre%3A%20%0AFecha%3A%20%0AHora%3A%20%0APersonas%3A%20" target="_blank" rel="noopener">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-13.4 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12z"/></svg>
+        Enviar comprobante
+      </a>
+      <span class="note">Se abre WhatsApp con el mensaje listo</span>
+    </section>
+
+    <section class="meet" aria-labelledby="t-encuentro">
+      <p class="eyebrow" id="t-encuentro">Punto de encuentro</p>
+      <div class="addr">
+        <span class="ico"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5B21B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+        <div><b>Kr. 4A # 7-12, El Rodadero</b><span>Esquina Diagonal, edificio Aquarión 7 · Santa Marta</span></div>
+      </div>
+      <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Carrera%204A%20%237-12%2C%20El%20Rodadero%2C%20Santa%20Marta%2C%20Colombia" target="_blank" rel="noopener">Abrir en Google Maps</a>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <img class="logo" src="img/logo.png" alt="Moto Viajeros · Buggy Aventura Tayrona" width="120" height="120" loading="lazy">
+    <div class="phones"><a href="https://wa.me/573239301842">323 930 1842</a> · <a href="https://wa.me/573504829399">350 482 9399</a></div>
+    <p class="eyebrow" style="margin:0">Síguenos · @buggyaventuratayrona</p>
+    <div class="social">
+      <a class="btn" href="https://www.instagram.com/buggyaventuratayrona" target="_blank" rel="noopener">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>Instagram</a>
+      <a class="btn" href="https://www.tiktok.com/@buggyaventuratayrona" target="_blank" rel="noopener">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 2.5 2.5 4.5 5 5"/></svg>TikTok</a>
+    </div>
+    <p class="legal">RNT 268308 · Santa Marta, Colombia</p>
+  </footer>
+</div>
+
+<dialog id="reserva" aria-labelledby="t-reserva">
+  <form class="sheet" method="dialog" novalidate>
+    <span class="handle" aria-hidden="true"></span>
+    <div class="sheet-head">
+      <div><p class="eyebrow">Del monte al mar · 2 h</p><h2 id="t-reserva">Reserva tu tour</h2></div>
+      <button class="close" type="button" data-cerrar aria-label="Cerrar">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F6EEDC" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="field"><label for="r-nombre">Tu nombre</label><input id="r-nombre" type="text" autocomplete="name" placeholder="Nombre y apellido"></div>
+    <div class="field"><label for="r-fecha">Fecha</label><input id="r-fecha" type="date"></div>
+    <fieldset class="field">
+      <legend>Hora de salida</legend>
+      <div class="slots">
+        <button class="slot" type="button" aria-pressed="false" data-hora="8:00 AM">8:00<small>AM</small></button>
+        <button class="slot" type="button" aria-pressed="false" data-hora="10:00 AM">10:00<small>AM</small></button>
+        <button class="slot" type="button" aria-pressed="false" data-hora="12:00 M">12:00<small>M</small></button>
+        <button class="slot" type="button" aria-pressed="false" data-hora="2:00 PM">2:00<small>PM</small></button>
+        <button class="slot" type="button" aria-pressed="false" data-hora="4:00 PM">4:00<small>PM</small></button>
+      </div>
+    </fieldset>
+    <div class="people">
+      <div><b id="t-personas" style="font-size:14px">Personas</b><small>Máximo 10 por salida</small></div>
+      <div class="stepper" role="group" aria-labelledby="t-personas">
+        <button class="menos" type="button" aria-label="Quitar una persona">−</button>
+        <output id="r-personas" aria-live="polite">2</output>
+        <button class="mas" type="button" aria-label="Agregar una persona">+</button>
+      </div>
+    </div>
+    <div class="sum"><span id="r-detalle">2 × $150.000</span><strong id="r-total">$300.000</strong></div>
+    <a id="enviar" class="btn btn-monte" href="#" target="_blank" rel="noopener" aria-disabled="true">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-13.4 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12z"/></svg>
+      Enviar reserva
+    </a>
+    <p class="falta" id="r-falta" aria-live="polite"></p>
+    <span class="note">Primero te confirmamos el cupo por WhatsApp y después pagas.</span>
+  </form>
+</dialog>
+
+<script>
+(function () {
+  var WA = '573239301842', PRECIO = 150000, MAX = 10;
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var pesos = function (n) { return '$' + n.toLocaleString('es-CO'); };
+
+  /* Copiar llaves */
+  $$('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var txt = b.getAttribute('data-copy');
+      var hecho = function () {
+        b.textContent = 'Copiada'; b.classList.add('ok');
+        setTimeout(function () { b.textContent = 'Copiar'; b.classList.remove('ok'); }, 2000);
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(txt).then(hecho, function () { viejo(txt); hecho(); });
+      } else { viejo(txt); hecho(); }
+    });
+  });
+  function viejo(txt) {
+    var t = document.createElement('textarea');
+    t.value = txt; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(t);
+  }
+
+  /* Ventana de reserva */
+  var dlg = $('#reserva'), nombre = $('#r-nombre'), fecha = $('#r-fecha');
+  var enviar = $('#enviar'), falta = $('#r-falta'), out = $('#r-personas');
+  var menos = $('.menos', dlg), mas = $('.mas', dlg);
+  var estado = { hora: '', personas: 2 };
+
+  var hoy = new Date(); var p = function (n) { return String(n).padStart(2, '0'); };
+  fecha.min = hoy.getFullYear() + '-' + p(hoy.getMonth() + 1) + '-' + p(hoy.getDate());
+
+  function abrir() {
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+    document.body.style.overflow = 'hidden';
+  }
+  function cerrar() {
+    if (typeof dlg.close === 'function') dlg.close(); else dlg.removeAttribute('open');
+  }
+  dlg.addEventListener('close', function () { document.body.style.overflow = ''; });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) cerrar(); });
+  $$('[data-reservar]').forEach(function (b) { b.addEventListener('click', abrir); });
+  $('[data-cerrar]', dlg).addEventListener('click', cerrar);
+
+  $$('.slot', dlg).forEach(function (b) {
+    b.addEventListener('click', function () {
+      estado.hora = b.getAttribute('data-hora');
+      $$('.slot', dlg).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      actualizar();
+    });
+  });
+  menos.addEventListener('click', function () { estado.personas = Math.max(1, estado.personas - 1); actualizar(); });
+  mas.addEventListener('click', function () { estado.personas = Math.min(MAX, estado.personas + 1); actualizar(); });
+  nombre.addEventListener('input', actualizar);
+  fecha.addEventListener('input', actualizar);
+  fecha.addEventListener('change', actualizar);
+
+  function fechaLarga(v) {
+    try {
+      var d = new Date(v + 'T12:00:00');
+      var s = d.toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    } catch (e) { return v; }
+  }
+
+  function actualizar() {
+    var n = estado.personas, total = n * PRECIO, nom = nombre.value.trim();
+    out.textContent = n;
+    menos.disabled = n <= 1; mas.disabled = n >= MAX;
+    $('#r-detalle').textContent = n + ' × ' + pesos(PRECIO);
+    $('#r-total').textContent = pesos(total);
+    var faltan = [];
+    if (!nom) faltan.push('nombre');
+    if (!fecha.value) faltan.push('fecha');
+    if (!estado.hora) faltan.push('hora');
+    var listo = faltan.length === 0;
+    falta.textContent = listo ? '' : 'Falta: ' + faltan.join(', ');
+    enviar.setAttribute('aria-disabled', listo ? 'false' : 'true');
+    if (listo) {
+      var msg = '*Nueva reserva — Buggy Aventura Tayrona*\n' +
+        'Nombre: ' + nom + '\n' +
+        'Fecha: ' + fechaLarga(fecha.value) + '\n' +
+        'Hora: ' + estado.hora + '\n' +
+        'Personas: ' + n + '\n' +
+        'Total: ' + pesos(total);
+      enviar.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+    } else {
+      enviar.href = '#';
+    }
+  }
+  enviar.addEventListener('click', function (e) { if (enviar.getAttribute('aria-disabled') === 'true') e.preventDefault(); });
+  actualizar();
+})();
+</script>
+</body>
+</html>
