@@ -158,7 +158,16 @@ dialog[open]{animation:sube .25s ease-out}
 .sheet-head h2{margin:2px 0 0;font-family:var(--display);font-weight:400;font-size:36px;line-height:1;text-transform:uppercase}
 .close{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:0;background:var(--noche);display:flex;align-items:center;justify-content:center;cursor:pointer}
 .field label,.field legend{display:block;font-weight:800;font-size:14px;margin-bottom:6px;padding:0}
-.field input{width:100%;height:48px;border:2px solid var(--noche);border-radius:12px;padding:0 14px;font:inherit;font-size:16px;background:#fff;color:var(--noche)}
+.field input{display:block;width:100%;min-width:0;max-width:100%;height:48px;border:2px solid var(--noche);border-radius:12px;padding:0 14px;font:inherit;font-size:16px;background:#fff;color:var(--noche);-webkit-appearance:none;appearance:none}
+.fecha-wrap{position:relative}
+.fecha-wrap input{line-height:44px;text-align:left}
+.fecha-wrap input::-webkit-date-and-time-value{text-align:left}
+.fecha-wrap input::-webkit-calendar-picker-indicator{opacity:.6}
+.fecha-ph{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#8A7B68;font-size:16px;pointer-events:none}
+.fecha-wrap.lleno .fecha-ph{display:none}
+.fecha-wrap:not(.lleno) input:not(:focus)::-webkit-datetime-edit{color:transparent}
+.fecha-wrap input:focus + .fecha-ph{display:none}
+.sheet-head h2:focus{outline:none}
 fieldset.field{border:0;margin:0;padding:0;min-width:0}
 .slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
 .slot{height:54px;border-radius:10px;border:2px solid rgba(35,26,18,.25);background:#fff;color:var(--noche);font-weight:800;font-size:15px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;cursor:pointer;padding:0}
@@ -332,13 +341,13 @@ fieldset.field{border:0;margin:0;padding:0;min-width:0}
   <form class="sheet" method="dialog" novalidate>
     <span class="handle" aria-hidden="true"></span>
     <div class="sheet-head">
-      <div><p class="eyebrow">Del monte al mar · 2 h</p><h2 id="t-reserva">Reserva tu tour</h2></div>
+      <div><p class="eyebrow">Del monte al mar · 2 h</p><h2 id="t-reserva" tabindex="-1" autofocus>Reserva tu tour</h2></div>
       <button class="close" type="button" data-cerrar aria-label="Cerrar">
         <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F6EEDC" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
     </div>
     <div class="field"><label for="r-nombre">Tu nombre</label><input id="r-nombre" type="text" autocomplete="name" placeholder="Nombre y apellido"></div>
-    <div class="field"><label for="r-fecha">Fecha</label><input id="r-fecha" type="date"></div>
+    <div class="field"><label for="r-fecha">Fecha</label><div class="fecha-wrap" id="fecha-wrap"><input id="r-fecha" type="date"><span class="fecha-ph" aria-hidden="true">Elige el día</span></div></div>
     <fieldset class="field">
       <legend>Hora de salida</legend>
       <div class="slots">
@@ -447,6 +456,7 @@ fieldset.field{border:0;margin:0;padding:0;min-width:0}
     if (!nom) faltan.push('nombre');
     if (!fecha.value) faltan.push('fecha');
     if (!estado.hora) faltan.push('hora');
+    $('#fecha-wrap').classList.toggle('lleno', !!fecha.value);
     var listo = faltan.length === 0;
     falta.textContent = listo ? '' : 'Falta: ' + faltan.join(', ');
     enviar.setAttribute('aria-disabled', listo ? 'false' : 'true');
